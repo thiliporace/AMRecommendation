@@ -67,7 +67,7 @@ All dependencies are managed via **SPM (Swift Package Manager)**:
 1. Clone the repository.
 2. Open the project in Xcode.
 3. Resolve Swift Package Manager dependencies.
-4. Copy Secrets.example.xcconfig to Secrets.xcconfig and fill in your Spotify credentials. This file is listed in .gitignore and must never be committed.
+4. Copy Secrets.example.xcconfig to Secrets.xcconfig, move it to AMRecommendation and fill in your Spotify credentials. This file is listed in .gitignore and must never be committed.
 5. Build and run.
 
 > Note: Accessing the Spotify Web API requires a Spotify app registered in the Spotify Developer Dashboard (providing a Client ID and Client Secret), and the app owner must have an active Spotify Premium subscription for Development Mode access. Xcode 26 with macOS Tahoe and iOS 26 for the build target are required.
