@@ -33,6 +33,18 @@ jobs:
       - name: Versions
         run: xcodebuild -version && swift --version
 
+      - name: Generate Secrets.xcconfig
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REDIRECT_URI: ${{ secrets.SPOTIFY_REDIRECT_URI }}
+        run: |
+          cat > Secrets.xcconfig <<EOF
+          SPOTIFY_CLIENT_ID = ${SPOTIFY_CLIENT_ID}
+          SPOTIFY_CLIENT_SECRET = ${SPOTIFY_CLIENT_SECRET}
+          SPOTIFY_REDIRECT_URI = ${SPOTIFY_REDIRECT_URI}
+          EOF
+
       - name: Cache SPM
         uses: actions/cache@v4
         with:
