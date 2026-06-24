@@ -9,9 +9,9 @@ import Foundation
 
 struct ExternalIdsModel {
     // International Standard Recording Code
-    let isrc: String
+    let isrc: String?
     // International Article Number
-    let ean: String
+    let ean: String?
     // Universal Product Code
-    let upc: String
+    let upc: String?
 }

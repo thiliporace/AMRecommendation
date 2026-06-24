@@ -8,6 +8,8 @@
 import Foundation
 
 struct ArtistModel {
+    // The Spotify URL for the artist.
+    let externalUrl: String
     // A link to the Web API endpoint providing full details of the artist.
     let href: String
     // The Spotify ID for the artist.

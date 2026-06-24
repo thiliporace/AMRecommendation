@@ -9,9 +9,9 @@ import Foundation
 
 struct PlayHistoryModel {
     // The track the user listened to.
-    let track: TrackModelDTO
+    let track: TrackModel
     // The date and time the track was played.
-    let played_at: String
+    let playedAt: String
     // The context the track was played from.
     let context: ContextModel
 }

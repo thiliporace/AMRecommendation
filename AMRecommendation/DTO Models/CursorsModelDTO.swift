@@ -10,7 +10,7 @@ import Foundation
 // This struct will strictly follow the `CursorsObject` definition inside of Spotify Web API
 struct CursorsModelDTO: Decodable {
     // The cursor to use as key to find the next page of items.
-    let after: String
+    let after: String?
     // The cursor to use as key to find the previous page of items.
-    let before: String
+    let before: String?
 }

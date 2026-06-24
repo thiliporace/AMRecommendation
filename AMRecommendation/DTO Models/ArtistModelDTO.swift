@@ -1,5 +1,5 @@
 //
-//  ArtistModel.swift
+//  ArtistModelDTO.swift
 //  AMRecommendation
 //
 //  Created by Thiago Liporace on 24/06/26.
@@ -8,8 +8,8 @@
 import Foundation
 
 // This struct will strictly follow the `ArtistObject` definition inside of Spotify Web API
-struct ArtistModelDTO : Decodable {
-    //Known external URLs for this artist.
+struct ArtistModelDTO: Decodable {
+    // Known external URLs for this artist.
     let external_urls: ExternalUrlsModelDTO
     // A link to the Web API endpoint providing full details of the artist.
     let href: String

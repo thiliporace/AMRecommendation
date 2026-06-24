@@ -10,10 +10,10 @@ import Foundation
 struct ContextModel {
     // The object type, e.g. "artist", "playlist", "album", "show".
     let type: String
-    // A link to the Web API endpoint providing full details of the track.
+    // A link to the Web API endpoint providing full details of the context.
     let href: String
-    // External URLs for this context.
-    let external_urls: ExternalUrlsModelDTO
+    // The Spotify URL for the context.
+    let externalUrl: String
     // The Spotify URI for the context.
     let uri: String
 }

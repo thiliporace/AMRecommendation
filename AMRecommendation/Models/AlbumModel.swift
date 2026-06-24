@@ -8,11 +8,11 @@
 import Foundation
 
 struct AlbumModel {
-    // The type of the album.
+    // The type of the album. Possible values: "album", "single", "compilation"
     let albumType: String
     // The number of tracks in the album.
     let totalTracks: Int
-    // Known external URLs for this album. Only Spotify string needs to be filled.
+    // The Spotify URL for the album.
     let externalUrl: String
     // A link to the Web API endpoint providing full details of the album.
     let href: String
@@ -26,12 +26,12 @@ struct AlbumModel {
     let releaseDate: String
     // The precision with which release_date value is known. Allowed values: "year", "month", "day"
     let releaseDatePrecision: String
-    // The reason for the restriction. Albums may be restricted if the content is not available in a given market, to the user's subscription type, or when the user's account is set to not play explicit content. Additional reasons may be added in the future.
-    let restrictionReason: String
+    // The reason for the restriction, if any.
+    let restrictionReason: String?
     // The object type.
     let type: String
     // The Spotify URI for the album.
     let uri: String
-    // The artists of the album. Each artist object includes a link in href to more detailed information about the artist.
+    // The artists of the album.
     let artists: [SimplifiedArtistModel]
 }

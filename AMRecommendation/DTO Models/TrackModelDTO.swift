@@ -1,5 +1,5 @@
 //
-//  TrackModel.swift
+//  TrackModelDTO.swift
 //  AMRecommendation
 //
 //  Created by Thiago Liporace on 24/06/26.
@@ -8,7 +8,7 @@
 import Foundation
 
 // This struct will strictly follow the `TrackObject` definition inside of Spotify Web API
-struct TrackModelDTO : Decodable {
+struct TrackModelDTO: Decodable {
     // The album on which the track appears. The album object includes a link in href to full information about the album.
     let album: AlbumModelDTO
     // The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
@@ -16,7 +16,7 @@ struct TrackModelDTO : Decodable {
     // The disc number (usually 1 unless the album consists of more than one disc).
     let disc_number: Int
     // The track length in milliseconds.
-    let duration: Int
+    let duration_ms: Int
     // Whether or not the track has explicit lyrics ( true = yes it does; false = no it does not OR unknown).
     let explicit: Bool
     // Known external IDs for the track.
@@ -27,12 +27,10 @@ struct TrackModelDTO : Decodable {
     let href: String
     // The Spotify ID for the track.
     let id: String
-    // Part of the response when Track Relinking is applied. If true, the track is playable in the given market. Otherwise false.
-    let is_playable: Bool
-    // The reason for the restriction. Supported values: market - The content item is not available in the given market.
-    // product - The content item is not available for the user's subscription type.
-    // explicit - The content item is explicit and the user's account is set to not play explicit content.
-    let restrictions: RestrictionsModelDTO
+    // Part of the response when Track Relinking is applied. If true, the track is playable in the given market.
+    let is_playable: Bool?
+    // Included in the response when a content restriction is applied.
+    let restrictions: RestrictionsModelDTO?
     // The name of the track.
     let name: String
     // The number of the track. If an album has several discs, the track number is the number on the specified disc.
