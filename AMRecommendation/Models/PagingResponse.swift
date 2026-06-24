@@ -14,3 +14,5 @@ struct PagingResponse<T> {
     let total: Int
     let next: String?
 }
+
+extension PagingResponse: Equatable where T: Equatable {}

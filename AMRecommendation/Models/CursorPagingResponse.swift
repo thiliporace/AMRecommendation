@@ -13,3 +13,5 @@ struct CursorPagingResponse<T> {
     let items: [T]
     let next: String?
 }
+
+extension CursorPagingResponse: Equatable where T: Equatable {}

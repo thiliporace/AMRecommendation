@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PlayHistoryModel {
+struct PlayHistoryModel: Equatable {
     // The track the user listened to.
     let track: TrackModel
     // The date and time the track was played.

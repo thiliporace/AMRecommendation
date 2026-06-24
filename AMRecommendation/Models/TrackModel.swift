@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrackModel {
+struct TrackModel : Equatable {
     // The album on which the track appears. The album object includes a link in href to full information about the album.
     let album: AlbumModel
     // The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
@@ -42,4 +42,8 @@ struct TrackModel {
     let uri: String
     // Whether or not the track is from a local file.
     let isLocal: Bool
+    
+    static func == (lhs: TrackModel, rhs: TrackModel) -> Bool {
+        return lhs.id == rhs.id // Only check the ID
+    }
 }

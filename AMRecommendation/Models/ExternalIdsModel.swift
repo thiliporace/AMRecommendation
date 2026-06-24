@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExternalIdsModel {
+struct ExternalIdsModel: Equatable {
     // International Standard Recording Code
     let isrc: String?
     // International Article Number

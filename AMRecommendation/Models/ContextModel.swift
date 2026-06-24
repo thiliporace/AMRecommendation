@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ContextModel {
+struct ContextModel: Equatable {
     // The object type, e.g. "artist", "playlist", "album", "show".
     let type: String
     // A link to the Web API endpoint providing full details of the context.
