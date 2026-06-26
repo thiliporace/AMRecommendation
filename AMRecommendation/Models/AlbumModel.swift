@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AlbumModel : Equatable {
+struct AlbumModel: Equatable {
     // The type of the album. Possible values: "album", "single", "compilation"
     let albumType: String
     // The number of tracks in the album.
@@ -34,7 +34,7 @@ struct AlbumModel : Equatable {
     let uri: String
     // The artists of the album.
     let artists: [SimplifiedArtistModel]
-    
+
     static func == (lhs: AlbumModel, rhs: AlbumModel) -> Bool {
         return lhs.id == rhs.id // Only check the ID
     }

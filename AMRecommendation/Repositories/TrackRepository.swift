@@ -11,7 +11,7 @@ import Foundation
 protocol TrackRepository {
     // https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
     func getUserTopTracks(time_range: TimeRangeEnum, limit: Int, offset: Int) async throws -> [TrackModel]
-    
+
     // https://developer.spotify.com/documentation/web-api/reference/get-recently-played
     // limit: The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
     // after: A Unix timestamp in milliseconds. Returns all items after (but not including) this cursor position. If after is specified, before must not be specified.

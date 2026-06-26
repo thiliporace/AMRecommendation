@@ -8,7 +8,7 @@
 import Foundation
 
 // This struct will strictly follow the `SimplifiedArtistModel` definition inside of Spotify Web API
-struct SimplifiedArtistModelDTO : Decodable {
+struct SimplifiedArtistModelDTO: Decodable {
     // Known external URLs for this album. Only Spotify string needs to be filled.
     let external_urls: ExternalUrlsModelDTO
     // A link to the Web API endpoint providing full details of the artist.

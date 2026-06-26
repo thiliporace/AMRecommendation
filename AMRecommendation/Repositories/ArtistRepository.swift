@@ -11,7 +11,7 @@ import Foundation
 protocol ArtistRepository {
     // https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
     func getUserTopArtists(time_range: TimeRangeEnum, limit: Int, offset: Int) async throws -> [ArtistModel]
-    
+
     // https://developer.spotify.com/documentation/web-api/reference/get-an-artist
     func getArtist(id: String) async throws -> ArtistModel
 }

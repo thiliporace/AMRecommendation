@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ArtistModel : Equatable {
+struct ArtistModel: Equatable {
     // The Spotify URL for the artist.
     let externalUrl: String
     // A link to the Web API endpoint providing full details of the artist.
@@ -22,7 +22,7 @@ struct ArtistModel : Equatable {
     let type: String
     // The Spotify URI for the artist.
     let uri: String
-    
+
     static func == (lhs: ArtistModel, rhs: ArtistModel) -> Bool {
         return lhs.id == rhs.id // Only check the ID
     }

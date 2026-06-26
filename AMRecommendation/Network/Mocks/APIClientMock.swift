@@ -7,16 +7,7 @@
 
 import Foundation
 
-//
-//  APIClient.swift
-//  AMRecommendation
-//
-//  Created by Thiago Liporace on 25/06/26.
-//
-
-import Foundation
-
-//final actor APIClientMock : APIClientProtocol {
+// final actor APIClientMock : APIClientProtocol {
 //    func request<T>(path: String, queryItems: [URLQueryItem], repositoryType: String) async throws -> T where T : Decodable {
 //        <#code#>
 //    }
@@ -24,4 +15,4 @@ import Foundation
 //    func refreshToken() async throws {
 //        <#code#>
 //    }
-//}
+// }

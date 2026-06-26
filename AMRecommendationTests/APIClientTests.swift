@@ -13,27 +13,27 @@ import XCTest
 // Swift Testing - API Client
 @Suite("APIClient Tests") struct APIClientTests {
     private struct DummyDTO: Decodable, Equatable { let id: String }
-    
+
     private func makeClient(_ session: NetworkSessionMock) -> APIClient {
         APIClient(session: session, accessToken: "test-token")
     }
-    
+
     @Test("Tests fake DTO decoding") func successDecodesData() async throws {
         let session = NetworkSessionMock(statusCode: 200, data: #"{"id":"track123"}"#.data(using: .utf8)!)
-        
+
         let result: DummyDTO = try await makeClient(session).request(
             path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
         )
         #expect(result == DummyDTO(id: "track123"))
     }
-    
+
     @Test("Tests bearer token attaching") func attachesBearerToken() async throws {
         let session = NetworkSessionMock(statusCode: 200, data: #"{"id":"x"}"#.data(using: .utf8)!)
         let dummy: DummyDTO = try await makeClient(session).request(
             path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks")
         #expect(session.lastRequest?.value(forHTTPHeaderField: "Authorization") == "Bearer test-token")
     }
-    
+
     @Test("Tests real track DTO decoding") func successDecodesRealData() async throws {
         let json = """
         {
@@ -72,15 +72,15 @@ import XCTest
           "uri": "spotify:track:3HVRZxCp3BWYuYe8L8BMNH", "is_local": false
         }
         """.data(using: .utf8)!
-        
+
         let session = NetworkSessionMock(statusCode: 200, data: json)
-        
+
         let dto: TrackModelDTO = try await makeClient(session).request(
             path: "/tracks/3HVRZxCp3BWYuYe8L8BMNH",
             queryItems: [.init(name: "market", value: "US")],
             repositoryType: "Tracks"
         )
-        
+
         #expect(dto.id == "3HVRZxCp3BWYuYe8L8BMNH")
         #expect(dto.name == "Real Life")
         #expect(dto.duration_ms == 206973)
@@ -92,12 +92,12 @@ import XCTest
         #expect(dto.artists.first?.name == "The Marías")
         #expect(dto.external_ids.isrc == "USAT22400841")
     }
-    
+
     @Test("Tests unauthorized 401 response") func testUnauthorizedThrows() async throws {
         let session = NetworkSessionMock(statusCode: 401)
         let client = makeClient(session)
         await #expect(throws: AppErrorEnum.unauthorized(repositoryType: "Tracks")){
-            let dummy : DummyDTO = try await client.request(
+            let dummy: DummyDTO = try await client.request(
                 path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
             )
         }
@@ -105,24 +105,24 @@ import XCTest
 }
 
 // XCTest - API Client
-class APIClientTestsXC : XCTestCase {
-    
+class APIClientTestsXC: XCTestCase {
+
     private struct DummyDTO: Decodable, Equatable { let id: String }
-    
+
     private func makeClient(_ session: NetworkSessionMock) -> APIClient {
         APIClient(session: session, accessToken: "test-token")
     }
-    
+
     func testSuccessDecodesData() async throws {
         let session = NetworkSessionMock(statusCode: 200, data: #"{"id":"track123"}"#.data(using: .utf8)!)
-        
+
         let client = makeClient(session)
         let result: DummyDTO = try await client.request(
             path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
         )
         XCTAssertEqual(result, DummyDTO(id: "track123"))
     }
-    
+
     func testUnauthorizedThrows() async throws {
         let session = NetworkSessionMock(statusCode: 401)
         let client = makeClient(session)

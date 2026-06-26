@@ -16,7 +16,7 @@ protocol APIClientProtocol: Sendable {
         queryItems: [URLQueryItem],
         repositoryType: String
     ) async throws -> T
-    
+
     func refreshToken() async throws
 }
 

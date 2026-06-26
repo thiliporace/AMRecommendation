@@ -8,7 +8,7 @@
 import Foundation
 
 // This struct will strictly follow the `ImageObject` definition inside of Spotify Web API
-struct ImageModelDTO : Decodable{
+struct ImageModelDTO: Decodable {
     // The source URL of the image.
     let url: String
     // The image height in pixels. Nullable.

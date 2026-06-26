@@ -7,15 +7,15 @@
 
 import Foundation
 
-actor APIClient : APIClientProtocol {
+actor APIClient: APIClientProtocol {
     private let baseURL = URL(string: "https://api.spotify.com/v1")
     private let session: NetworkSession
     private let decoder: JSONDecoder
     private var accessToken: String
-    
+
     private var expiryDate: Date
     private var refreshToken: String
-    
+
     init(session: NetworkSession = URLSession.shared, accessToken: String) {
         self.session = session
         self.decoder = JSONDecoder()
@@ -23,54 +23,53 @@ actor APIClient : APIClientProtocol {
         self.expiryDate = Date().advanced(by: 3600) // Create expiry date for an hour after the first init
         self.refreshToken = ""
     }
-    
-    func request<T: Sendable>(path: String, queryItems: [URLQueryItem], repositoryType: String) async throws -> T where T : Decodable {
+
+    func request<T: Sendable>(path: String, queryItems: [URLQueryItem], repositoryType: String) async throws -> T where T: Decodable {
         // 1 - Build the URL - URLComponents handles encoding of your query values
         guard let baseURL = baseURL else {
             print("baseURL is nil")
             throw URLError(.unknown)
         }
-        
+
         var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)
         guard var components = components else {
             print("components is nil")
             throw URLError(.unknown)
         }
-        
+
         if !queryItems.isEmpty {
             components.queryItems = queryItems
         }
-        
+
         guard let url = components.url else {
             throw AppErrorEnum.networkError(repositoryType: repositoryType)
         }
-        
+
         // After an hour has passed, refresh the token
         if Date() >= expiryDate.addingTimeInterval(-60) {
             try await refreshToken()
         }
-        
+
         // 2 - Build the request with the owner token. Every Spotify request needs the Authorization: Bearer <token>
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        
+
         // 3 - Send the request
         let data: Data
         let response: URLResponse
         do {
             // When session.data finally finishes, it returns a Tuple, data (JSON bytes) and response (URLResponse)
             (data, response) = try await session.data(for: urlRequest)
-        }
-        catch {
+        } catch {
             throw AppErrorEnum.networkError(repositoryType: repositoryType)
         }
-        
+
         // 4 - Map status codes to AppError enum
         guard let httpResponse = response as? HTTPURLResponse else {
             throw AppErrorEnum.networkError(repositoryType: repositoryType)
         }
-        
+
         switch httpResponse.statusCode {
         case 200...299:
             break // success, go ahead to decoding
@@ -85,7 +84,7 @@ actor APIClient : APIClientProtocol {
         default:
             throw AppErrorEnum.serverError(repositoryType: repositoryType, code: httpResponse.statusCode)
         }
-        
+
         // 5. Decode the data
         do {
             return try decoder.decode(T.self, from: data)
@@ -93,21 +92,21 @@ actor APIClient : APIClientProtocol {
             throw AppErrorEnum.decodingError(repositoryType: repositoryType)
         }
     }
-    
+
     func refreshToken() async throws {
         let repoName = "RefreshToken"
         let clientId = Bundle.main.infoDictionary?["SPOTIFY_CLIENT_ID"] as? String
-        
+
         guard let clientId = clientId else {
             print("ClientId is nil")
             return
         }
-        
+
         // 1 - Token Endpoint
         guard let url = URL(string: "https://accounts.spotify.com/api/token") else {
             throw AppErrorEnum.networkError(repositoryType: repoName)
         }
-        
+
         // 2 - Refresh token
         var components = URLComponents()
         components.queryItems = [
@@ -115,14 +114,14 @@ actor APIClient : APIClientProtocol {
             .init(name: "refresh_token", value: refreshToken),
             .init(name: "client_id", value: clientId)
         ]
-        
+
         let bodyString = components.percentEncodedQuery ?? ""
-        
+
         var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
             urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             urlRequest.httpBody = bodyString.data(using: .utf8)
-        
+
         // 3 - Send
         let data: Data
         let response: URLResponse
@@ -131,7 +130,7 @@ actor APIClient : APIClientProtocol {
         } catch {
             throw AppErrorEnum.networkError(repositoryType: repoName)
         }
-        
+
         // 4 - Status mapping. A 400/401 here usually means the refresh token itself is invalid, user must log in again.
         guard let httpResponse = response as? HTTPURLResponse else {
             throw AppErrorEnum.networkError(repositoryType: repoName)
@@ -149,7 +148,7 @@ actor APIClient : APIClientProtocol {
         default:
             throw AppErrorEnum.serverError(repositoryType: repoName, code: httpResponse.statusCode)
         }
-        
+
         // 5 - Decode and update state
         let tokenResponse: TokenRefreshResponseDTO
         do {
