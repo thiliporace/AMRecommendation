@@ -1,6 +1,6 @@
 //
-//  APIClientMock.swift
-//  AMRecommendation
+//  FixtureEnum.swift
+//  AMRecommendationTests
 //
 //  Created by Thiago Liporace on 30/06/26.
 //
