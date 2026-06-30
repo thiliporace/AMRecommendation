@@ -1,0 +1,46 @@
+{
+  "href": "https://api.spotify.com/v1/me/player/recently-played",
+  "limit": 20, "next": null,
+  "cursors": { "after": "1718000000000", "before": "1717900000000" },
+  "items": [
+    {
+      "track": {
+        "album": {
+          "album_type": "album", "total_tracks": 14,
+          "external_urls": { "spotify": "https://open.spotify.com/album/03guxdOi12XJbnvxvxbpwG" },
+          "href": "https://api.spotify.com/v1/albums/03guxdOi12XJbnvxvxbpwG",
+          "id": "03guxdOi12XJbnvxvxbpwG",
+          "images": [ { "url": "https://i.scdn.co/image/abc640", "height": 640, "width": 640 } ],
+          "name": "Submarine", "release_date": "2024-05-31", "release_date_precision": "day",
+          "type": "album", "uri": "spotify:album:03guxdOi12XJbnvxvxbpwG",
+          "artists": [
+            { "external_urls": { "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx" },
+              "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+              "id": "2sSGPbdZJkaSE2AbcGOACx", "name": "The Marías", "type": "artist",
+              "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx" }
+          ]
+        },
+        "artists": [
+          { "external_urls": { "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx" },
+            "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+            "id": "2sSGPbdZJkaSE2AbcGOACx", "name": "The Marías", "type": "artist",
+            "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx" }
+        ],
+        "disc_number": 1, "duration_ms": 206973, "explicit": false,
+        "external_ids": { "isrc": "USAT22400841" },
+        "external_urls": { "spotify": "https://open.spotify.com/track/3HVRZxCp3BWYuYe8L8BMNH" },
+        "href": "https://api.spotify.com/v1/tracks/3HVRZxCp3BWYuYe8L8BMNH",
+        "id": "3HVRZxCp3BWYuYe8L8BMNH", "is_playable": true, "name": "Real Life",
+        "track_number": 5, "type": "track",
+        "uri": "spotify:track:3HVRZxCp3BWYuYe8L8BMNH", "is_local": false
+      },
+      "played_at": "2024-06-10T12:00:00.000Z",
+      "context": {
+        "type": "playlist",
+        "href": "https://api.spotify.com/v1/playlists/37i9dQ",
+        "external_urls": { "spotify": "https://open.spotify.com/playlist/37i9dQ" },
+        "uri": "spotify:playlist:37i9dQ"
+      }
+    }
+  ]
+}

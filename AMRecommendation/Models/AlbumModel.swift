@@ -39,3 +39,21 @@ struct AlbumModel: Equatable {
         return lhs.id == rhs.id // Only check the ID
     }
 }
+
+extension AlbumModel {
+    init(from dto: AlbumModelDTO) {
+        self.albumType = dto.album_type
+        self.totalTracks = dto.total_tracks
+        self.externalUrl = dto.external_urls.spotify
+        self.href = dto.href
+        self.id = dto.id
+        self.images = dto.images.map { ImageModel(from: $0) }
+        self.name = dto.name
+        self.releaseDate = dto.release_date
+        self.releaseDatePrecision = dto.release_date_precision
+        self.restrictionReason = dto.restrictions?.reason
+        self.type = dto.type
+        self.uri = dto.uri
+        self.artists = dto.artists.map { SimplifiedArtistModel(from: $0) }
+    }
+}

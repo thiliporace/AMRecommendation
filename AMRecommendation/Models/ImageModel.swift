@@ -19,3 +19,11 @@ struct ImageModel: Equatable {
         return lhs.url == rhs.url // Only check the URL
     }
 }
+
+extension ImageModel {
+    init(from dto: ImageModelDTO){
+        self.url = dto.url
+        self.height = dto.height
+        self.width = dto.width
+    }
+}

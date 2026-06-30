@@ -15,3 +15,11 @@ struct ExternalIdsModel: Equatable {
     // Universal Product Code
     let upc: String?
 }
+
+extension ExternalIdsModel {
+    init(from dto: ExternalIdsModelDTO) {
+        self.isrc = dto.isrc
+        self.ean = dto.ean
+        self.upc = dto.upc
+    }
+}

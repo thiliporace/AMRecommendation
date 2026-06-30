@@ -9,7 +9,7 @@ import Foundation
 
 // Generic paging wrapper following the `PagingObject` definition in the Spotify Web API.
 // Used by GET /me/top/artists, GET /me/top/tracks, and GET /artists/{id}/albums.
-struct PagingResponseDTO<T: Decodable>: Decodable {
+struct PagingResponseDTO<T: Decodable & Sendable>: Decodable, Sendable {
     // A link to the Web API endpoint returning the full result of the request.
     let href: String
     // The maximum number of items in the response.

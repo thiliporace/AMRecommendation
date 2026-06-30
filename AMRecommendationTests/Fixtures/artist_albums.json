@@ -1,0 +1,470 @@
+{
+  "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx/albums?offset=0&limit=10&market=US&locale=en-US,en;q%3D0.9,pt;q%3D0.8,pt-BR;q%3D0.7&include_groups=single,appears_on,album,compilation",
+  "limit": 10,
+  "next": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx/albums?offset=10&limit=10&market=US&locale=en-US,en;q%3D0.9,pt;q%3D0.8,pt-BR;q%3D0.7&include_groups=single,appears_on,album,compilation",
+  "offset": 0,
+  "previous": null,
+  "total": 30,
+  "items": [
+    {
+      "album_type": "album",
+      "total_tracks": 14,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/03guxdOi12XJbnvxvxbpwG"
+      },
+      "href": "https://api.spotify.com/v1/albums/03guxdOi12XJbnvxvxbpwG",
+      "id": "03guxdOi12XJbnvxvxbpwG",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b2738aa339341a0b0c813909c831",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e028aa339341a0b0c813909c831",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d000048518aa339341a0b0c813909c831",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "Submarine",
+      "release_date": "2024-05-31",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:03guxdOi12XJbnvxvxbpwG",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "album",
+      "total_tracks": 13,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/5TkaDC4mYSLBvdG6UrIB0v"
+      },
+      "href": "https://api.spotify.com/v1/albums/5TkaDC4mYSLBvdG6UrIB0v",
+      "id": "5TkaDC4mYSLBvdG6UrIB0v",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b273657d6776f64aa731c8d1748b",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e02657d6776f64aa731c8d1748b",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00004851657d6776f64aa731c8d1748b",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "CINEMA",
+      "release_date": "2021-06-25",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:5TkaDC4mYSLBvdG6UrIB0v",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 2,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/3y8LtE30zPfQ4sXYRKvt2e"
+      },
+      "href": "https://api.spotify.com/v1/albums/3y8LtE30zPfQ4sXYRKvt2e",
+      "id": "3y8LtE30zPfQ4sXYRKvt2e",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b273a66ab2cbaebcc84ddd45a078",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e02a66ab2cbaebcc84ddd45a078",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00004851a66ab2cbaebcc84ddd45a078",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "Back To Me",
+      "release_date": "2025-04-04",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:3y8LtE30zPfQ4sXYRKvt2e",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 1,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/0CHEK7iHmeB7bZ8lqAsbS3"
+      },
+      "href": "https://api.spotify.com/v1/albums/0CHEK7iHmeB7bZ8lqAsbS3",
+      "id": "0CHEK7iHmeB7bZ8lqAsbS3",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b2734076c62eeace86cc7bde7aef",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e024076c62eeace86cc7bde7aef",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d000048514076c62eeace86cc7bde7aef",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "Nobody New",
+      "release_date": "2025-04-02",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:0CHEK7iHmeB7bZ8lqAsbS3",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 2,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/6FkCugnh8o4VjxMMw4xlRC"
+      },
+      "href": "https://api.spotify.com/v1/albums/6FkCugnh8o4VjxMMw4xlRC",
+      "id": "6FkCugnh8o4VjxMMw4xlRC",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b27358c0f15c5247c0b719d7ffb0",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e0258c0f15c5247c0b719d7ffb0",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000485158c0f15c5247c0b719d7ffb0",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "No One Noticed (Extended)",
+      "release_date": "2024-11-15",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:6FkCugnh8o4VjxMMw4xlRC",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 1,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/2jGnW9YHP10ap7fPvq93zO"
+      },
+      "href": "https://api.spotify.com/v1/albums/2jGnW9YHP10ap7fPvq93zO",
+      "id": "2jGnW9YHP10ap7fPvq93zO",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b2735faecec69fe3e965a00e47ee",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e025faecec69fe3e965a00e47ee",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d000048515faecec69fe3e965a00e47ee",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "No One Noticed",
+      "release_date": "2024-05-31",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:2jGnW9YHP10ap7fPvq93zO",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 1,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/5TZm9qi0223t20ypmJevEq"
+      },
+      "href": "https://api.spotify.com/v1/albums/5TZm9qi0223t20ypmJevEq",
+      "id": "5TZm9qi0223t20ypmJevEq",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b27314a012da5638f895eaefffa5",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e0214a012da5638f895eaefffa5",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000485114a012da5638f895eaefffa5",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "Si Me Voy (with The Marías)",
+      "release_date": "2023-03-10",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:5TZm9qi0223t20ypmJevEq",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2Tglaf8nvDzwSQnpSrjLHP"
+          },
+          "href": "https://api.spotify.com/v1/artists/2Tglaf8nvDzwSQnpSrjLHP",
+          "id": "2Tglaf8nvDzwSQnpSrjLHP",
+          "name": "Cuco",
+          "type": "artist",
+          "uri": "spotify:artist:2Tglaf8nvDzwSQnpSrjLHP"
+        },
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 2,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/4JaFGe9FKcubMLP6YVzCYP"
+      },
+      "href": "https://api.spotify.com/v1/albums/4JaFGe9FKcubMLP6YVzCYP",
+      "id": "4JaFGe9FKcubMLP6YVzCYP",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b2730661f386863f7f81a9a5bc97",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e020661f386863f7f81a9a5bc97",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d000048510661f386863f7f81a9a5bc97",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "Spotify Singles",
+      "release_date": "2021-10-27",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:4JaFGe9FKcubMLP6YVzCYP",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 2,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/3LcrYJ7ASoQo7SuBy7qGoI"
+      },
+      "href": "https://api.spotify.com/v1/albums/3LcrYJ7ASoQo7SuBy7qGoI",
+      "id": "3LcrYJ7ASoQo7SuBy7qGoI",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b27364fc8977e97b9a706527f5bd",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e0264fc8977e97b9a706527f5bd",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000485164fc8977e97b9a706527f5bd",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "Hush (Still Woozy Remix)",
+      "release_date": "2021-09-16",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:3LcrYJ7ASoQo7SuBy7qGoI",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        },
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/4iMO20EPodreIaEl8qW66y"
+          },
+          "href": "https://api.spotify.com/v1/artists/4iMO20EPodreIaEl8qW66y",
+          "id": "4iMO20EPodreIaEl8qW66y",
+          "name": "Still Woozy",
+          "type": "artist",
+          "uri": "spotify:artist:4iMO20EPodreIaEl8qW66y"
+        }
+      ],
+      "is_playable": true
+    },
+    {
+      "album_type": "single",
+      "total_tracks": 1,
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/2N0mrM0E67bgXuOkeuEHjC"
+      },
+      "href": "https://api.spotify.com/v1/albums/2N0mrM0E67bgXuOkeuEHjC",
+      "id": "2N0mrM0E67bgXuOkeuEHjC",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b273b4dab1fb51af2fda97fc40f0",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00001e02b4dab1fb51af2fda97fc40f0",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616d00004851b4dab1fb51af2fda97fc40f0",
+          "height": 64,
+          "width": 64
+        }
+      ],
+      "name": "bop it up!",
+      "release_date": "2020-10-23",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:2N0mrM0E67bgXuOkeuEHjC",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+          },
+          "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx",
+          "id": "2sSGPbdZJkaSE2AbcGOACx",
+          "name": "The Marías",
+          "type": "artist",
+          "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+        }
+      ],
+      "is_playable": true
+    }
+  ]
+}

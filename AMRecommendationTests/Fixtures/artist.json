@@ -1,0 +1,27 @@
+{
+  "external_urls": {
+    "spotify": "https://open.spotify.com/artist/2sSGPbdZJkaSE2AbcGOACx"
+  },
+  "href": "https://api.spotify.com/v1/artists/2sSGPbdZJkaSE2AbcGOACx?locale=en-US%2Cen%3Bq%3D0.9%2Cpt%3Bq%3D0.8%2Cpt-BR%3Bq%3D0.7",
+  "id": "2sSGPbdZJkaSE2AbcGOACx",
+  "images": [
+    {
+      "url": "https://i.scdn.co/image/ab6761610000e5ebaf586afa2b397f1288683a76",
+      "height": 640,
+      "width": 640
+    },
+    {
+      "url": "https://i.scdn.co/image/ab67616100005174af586afa2b397f1288683a76",
+      "height": 320,
+      "width": 320
+    },
+    {
+      "url": "https://i.scdn.co/image/ab6761610000f178af586afa2b397f1288683a76",
+      "height": 160,
+      "width": 160
+    }
+  ],
+  "name": "The Marías",
+  "type": "artist",
+  "uri": "spotify:artist:2sSGPbdZJkaSE2AbcGOACx"
+}

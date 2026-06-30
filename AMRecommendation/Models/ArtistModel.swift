@@ -27,3 +27,15 @@ struct ArtistModel: Equatable {
         return lhs.id == rhs.id // Only check the ID
     }
 }
+
+extension ArtistModel {
+    init(from dto: ArtistModelDTO){
+        self.externalUrl = dto.external_urls.spotify
+        self.href = dto.href
+        self.id = dto.id
+        self.images = dto.images.map {ImageModel(from: $0)}
+        self.name = dto.name
+        self.type = dto.type
+        self.uri = dto.uri
+    }
+}

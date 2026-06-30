@@ -47,3 +47,24 @@ struct TrackModel: Equatable {
         return lhs.id == rhs.id // Only check the ID
     }
 }
+
+extension TrackModel {
+    init(from dto: TrackModelDTO) {
+        self.album = AlbumModel(from: dto.album)
+        self.artists = dto.artists.map { SimplifiedArtistModel(from: $0) }
+        self.discNumber = dto.disc_number
+        self.duration = dto.duration_ms
+        self.explicit = dto.explicit
+        self.externalIds = ExternalIdsModel(from: dto.external_ids)
+        self.externalUrl = dto.external_urls.spotify
+        self.href = dto.href
+        self.id = dto.id
+        self.isPlayable = dto.is_playable ?? true
+        self.restrictionReason = dto.restrictions?.reason
+        self.name = dto.name
+        self.trackNumber = dto.track_number
+        self.type = dto.type
+        self.uri = dto.uri
+        self.isLocal = dto.is_local
+    }
+}

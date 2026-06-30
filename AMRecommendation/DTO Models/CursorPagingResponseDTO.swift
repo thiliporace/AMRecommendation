@@ -9,7 +9,7 @@ import Foundation
 
 // Generic cursor-based paging wrapper following the `CursorBasedPagingObject` definition in the Spotify Web API.
 // Used by GET /me/player/recently-played.
-struct CursorPagingResponseDTO<T: Decodable>: Decodable {
+struct CursorPagingResponseDTO<T: Decodable & Sendable>: Decodable, Sendable {
     // A link to the Web API endpoint returning the full result of the request.
     let href: String
     // The maximum number of items in the response.

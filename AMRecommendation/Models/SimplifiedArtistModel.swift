@@ -25,3 +25,14 @@ struct SimplifiedArtistModel: Equatable {
         return lhs.id == rhs.id // Only check the ID
     }
 }
+
+extension SimplifiedArtistModel {
+    init(from dto: SimplifiedArtistModelDTO){
+        self.externalUrl = dto.external_urls.spotify
+        self.href = dto.href
+        self.id = dto.id
+        self.name = dto.name
+        self.type = dto.type
+        self.uri = dto.uri
+    }
+}
