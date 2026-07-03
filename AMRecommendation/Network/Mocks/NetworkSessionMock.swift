@@ -10,7 +10,7 @@ import Foundation
 // final class: A class that cannot be subclassed or inherited by any other class
 // nonisolated: Opts out of the MainActor default
 // @unchecked: Nonisolated class with mutable vars can't satisfy checked Sendable
-nonisolated final class NetworkSessionMock: NetworkSession, @unchecked Sendable {
+nonisolated final class NetworkSessionMock: NetworkSessionProtocol, @unchecked Sendable {
     // Stubbing
     var data: Data
     var statusCode: Int

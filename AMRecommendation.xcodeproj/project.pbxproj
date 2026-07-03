@@ -34,6 +34,7 @@
 		8F2CE06A2FEB0A9400C3E428 /* AMRecommendation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMRecommendation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2CE0802FEB0A9600C3E428 /* AMRecommendationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMRecommendationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2CE08A2FEB0A9600C3E428 /* AMRecommendationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMRecommendationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FBBD63F2FF8401100653DBA /* AMRecommendation.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AMRecommendation.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -100,6 +101,7 @@
 		8F2CE0612FEB0A9400C3E428 = {
 			isa = PBXGroup;
 			children = (
+				8FBBD63F2FF8401100653DBA /* AMRecommendation.xctestplan */,
 				8F2CE06C2FEB0A9400C3E428 /* AMRecommendation */,
 				8F2CE0832FEB0A9600C3E428 /* AMRecommendationTests */,
 				8F2CE08D2FEB0A9600C3E428 /* AMRecommendationUITests */,

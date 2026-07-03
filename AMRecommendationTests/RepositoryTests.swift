@@ -9,8 +9,10 @@ import Foundation
 import Testing
 @testable import AMRecommendation
 
+// This Suite of tests is aimed at testing JSON data conversion into our Domain Models
+// They also test error throws from the API Client
 @Suite("AlbumRepository Tests with JSON Fixtures")
-struct AlbumRepositoryTests {
+struct AlbumRepositoryMockTests {
     
     private func makeClientWithJSON() throws -> APIClientMock {
         let result: Result<Data, Error> = try .success(FixtureEnum.data("artist_albums"))
@@ -70,7 +72,7 @@ struct AlbumRepositoryTests {
     
     @Test("getArtistAlbums propagates errors from the client")
     func propagatesError() async throws {
-        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized(repositoryType: "Albums")))
+        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized))
         let repo = AlbumRepositoryImpl(apiClient: mock)
 
         await #expect(throws: AppErrorEnum.self) {
@@ -82,7 +84,7 @@ struct AlbumRepositoryTests {
 }
 
 @Suite("ArtistRepository Tests with JSON Fixtures")
-struct ArtistRepositoryTests {
+struct ArtistRepositoryMockTests {
 
     private func makeClientWithTopArtistsJSON() throws -> APIClientMock {
         let result: Result<Data, Error> = try .success(FixtureEnum.data("top_artists"))
@@ -125,7 +127,7 @@ struct ArtistRepositoryTests {
 
     @Test("getUserTopArtists propagates errors from the client")
     func getUserTopArtistsPropagatesError() async throws {
-        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized(repositoryType: "Artists")))
+        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized))
         let repo = ArtistRepositoryImpl(apiClient: mock)
 
         await #expect(throws: AppErrorEnum.self) {
@@ -157,7 +159,7 @@ struct ArtistRepositoryTests {
 
     @Test("getArtist propagates errors from the client")
     func getArtistPropagatesError() async throws {
-        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized(repositoryType: "Artists")))
+        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized))
         let repo = ArtistRepositoryImpl(apiClient: mock)
 
         await #expect(throws: AppErrorEnum.self) {
@@ -167,7 +169,7 @@ struct ArtistRepositoryTests {
 }
 
 @Suite("TrackRepository Tests with JSON Fixtures")
-struct TrackRepositoryTests {
+struct TrackRepositoryMockTests {
 
     private func makeClientWithTopTracksJSON() throws -> APIClientMock {
         let result: Result<Data, Error> = try .success(FixtureEnum.data("top_tracks"))
@@ -222,7 +224,7 @@ struct TrackRepositoryTests {
 
     @Test("getUserTopTracks propagates errors from the client")
     func getUserTopTracksPropagatesError() async throws {
-        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized(repositoryType: "Tracks")))
+        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized))
         let repo = TrackRepositoryImpl(apiClient: mock)
 
         await #expect(throws: AppErrorEnum.self) {
@@ -232,7 +234,7 @@ struct TrackRepositoryTests {
 
     @Test("getUserRecentlyPlayedTracks propagates errors from the client")
     func getUserRecentlyPlayedTracksPropagatesError() async throws {
-        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized(repositoryType: "Tracks")))
+        let mock = APIClientMock(result: .failure(AppErrorEnum.unauthorized))
         let repo = TrackRepositoryImpl(apiClient: mock)
 
         await #expect(throws: AppErrorEnum.self) {

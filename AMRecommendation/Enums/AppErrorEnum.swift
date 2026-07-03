@@ -8,32 +8,36 @@
 import Foundation
 
 public enum AppErrorEnum: Error, LocalizedError, Equatable {
-    case unauthorized(repositoryType: String)
-    case forbidden(repositoryType: String)
-    case rateLimited(repositoryType: String)
-    case serverError(repositoryType: String, code: Int)
-    case networkError(repositoryType: String)
-    case decodingError(repositoryType: String)
+    case unauthorized
+    case forbidden
+    case rateLimited
+    case serverError(code: Int)
+    case networkError
+    case decodingError
+    case accessTokenMissing
 
     public var errorDescription: String? {
         switch self {
-        case .unauthorized(let repo):
-            return "Session expired while loading \(repo). Please log in again."
+        case .unauthorized:
+            return "Session expired. Please log in again."
 
-        case .forbidden(let repo):
-            return "Access denied to \(repo). You do not have the required permissions."
+        case .forbidden:
+            return "Access denied. You do not have the required permissions."
 
-        case .rateLimited(let repo):
-            return "Too many requests for \(repo). Please slow down and try again later."
+        case .rateLimited:
+            return "Too many requests. Please slow down and try again later."
 
-        case .serverError(let repo, let code):
-            return "A server error (\(code)) occurred while fetching \(repo). Please try again later."
+        case .serverError(let code):
+            return "A server error (\(code)) occurred while fetching the repository. Please try again later."
 
-        case .networkError(let repo):
-            return "Network connection lost while trying to load \(repo). Check your internet connection."
+        case .networkError:
+            return "Network connection lost while trying to load the repository. Check your internet connection."
 
-        case .decodingError(let repo):
-            return "We encountered an issue reading the \(repo) data. Please check for app updates."
+        case .decodingError:
+            return "We encountered an issue reading the repository data. Please check for app updates."
+            
+        case .accessTokenMissing:
+            return "There was an issue trying to retrieve an access token. Please try again."
         }
     }
 }

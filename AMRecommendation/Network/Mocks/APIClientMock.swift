@@ -20,7 +20,7 @@ final class APIClientMock : APIClientProtocol, @unchecked Sendable{
     }
     
     // Return existing DTO
-    func request<T>(path: String, queryItems: [URLQueryItem], repositoryType: String) async throws -> T where T : Decodable {
+    func request<T>(path: String, queryItems: [URLQueryItem]) async throws -> T where T : Decodable {
         lastPath = path
         lastQueryItems = queryItems
         
@@ -29,14 +29,11 @@ final class APIClientMock : APIClientProtocol, @unchecked Sendable{
             do{
                 return try JSONDecoder().decode(T.self, from: value)
             } catch {
-                throw AppErrorEnum.decodingError(repositoryType: repositoryType)
+                throw AppErrorEnum.decodingError
             }
         case .failure(let error):
             throw error
         }
     }
-    
-    func refreshToken() async throws {}
-    
     
 }

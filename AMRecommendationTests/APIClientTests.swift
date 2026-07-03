@@ -11,11 +11,13 @@ import XCTest
 @testable import AMRecommendation
 
 // Swift Testing - API Client
-@Suite("APIClient Tests") struct APIClientTests {
+// This Suite of tests is aimed at testing JSON data conversion into our DTO models.
+// They also test fake AppErrorEnum throws
+@Suite("APIClient Mock Tests") struct APIClientMockTests {
     private struct DummyDTO: Decodable, Equatable { let id: String }
     
     private func makeClient(_ session: NetworkSessionMock) -> APIClient {
-        APIClient(session: session, accessToken: "test-token")
+        APIClient(session: session, auth: AuthProviderMock())
     }
     
     private func makeClientWithJSON(loading fixture: String) throws -> APIClient {
@@ -26,33 +28,23 @@ import XCTest
     @Test("Tests fake DTO decoding") func successDecodesData() async throws {
         let session = NetworkSessionMock(statusCode: 200, data: #"{"id":"track123"}"#.data(using: .utf8)!)
         
-        let result: DummyDTO = try await makeClient(session).request(
-            path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
-        )
+        let result: DummyDTO = try await makeClient(session).request(path: "/me/top/tracks")
+        
         #expect(result == DummyDTO(id: "track123"))
-    }
-    
-    @Test("Tests bearer token attaching") func attachesBearerToken() async throws {
-        let session = NetworkSessionMock(statusCode: 200, data: #"{"id":"x"}"#.data(using: .utf8)!)
-        let _ : DummyDTO = try await makeClient(session).request(
-            path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks")
-        #expect(session.lastRequest?.value(forHTTPHeaderField: "Authorization") == "Bearer test-token")
     }
     
     @Test("Tests unauthorized 401 response") func testUnauthorizedThrows() async throws {
         let session = NetworkSessionMock(statusCode: 401)
         let client = makeClient(session)
-        await #expect(throws: AppErrorEnum.unauthorized(repositoryType: "Tracks")){
-            let _ : DummyDTO = try await client.request(
-                path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
-            )
+        await #expect(throws: AppErrorEnum.unauthorized){
+            let _ : DummyDTO = try await client.request(path: "/me/top/tracks")
         }
     }
     
     @Test("GET /me/top/tracks decodes into paged TrackModelDTO")
     func decodesTopTracks() async throws {
         let page: PagingResponseDTO<TrackModelDTO> = try await makeClientWithJSON(loading: "top_tracks")
-            .request(path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks")
+            .request(path: "/me/top/tracks")
         
         // PagingResponseDTO
         #expect(page.href == "https://api.spotify.com/v1/me/top/tracks")
@@ -116,7 +108,7 @@ import XCTest
     @Test("Decodes paged ArtistModelDTO with every field")
     func decodesTopArtists() async throws {
         let page: PagingResponseDTO<ArtistModelDTO> = try await makeClientWithJSON(loading: "top_artists")
-            .request(path: "/me/top/artists", queryItems: [], repositoryType: "Artists")
+            .request(path: "/me/top/artists")
         
         #expect(page.limit == 10)
         #expect(page.next != nil)
@@ -151,7 +143,7 @@ import XCTest
     @Test("Decodes single ArtistModelDTO with every field")
     func decodesArtist() async throws {
         let dto: ArtistModelDTO = try await makeClientWithJSON(loading: "artist")
-            .request(path: "/artists/2sSGPbdZJkaSE2AbcGOACx", queryItems: [], repositoryType: "Artists")
+            .request(path: "/artists/2sSGPbdZJkaSE2AbcGOACx")
         
         #expect(dto.id == "2sSGPbdZJkaSE2AbcGOACx")
         #expect(dto.name == "The Marías")
@@ -163,7 +155,7 @@ import XCTest
     @Test("Decodes paged SimplifiedAlbumModelDTO with every field")
     func decodesArtistAlbums() async throws {
         let page: PagingResponseDTO<SimplifiedAlbumModelDTO> = try await makeClientWithJSON(loading: "artist_albums")
-            .request(path: "/artists/2sSGPbdZJkaSE2AbcGOACx/albums", queryItems: [], repositoryType: "Albums")
+            .request(path: "/artists/2sSGPbdZJkaSE2AbcGOACx/albums")
         
         #expect(page.total == 30)
         let album = try #require(page.items.first)
@@ -183,7 +175,7 @@ import XCTest
     @Test("Decodes cursor-paged PlayHistoryModelDTO with every field")
     func decodesRecentlyPlayed() async throws {
         let page: CursorPagingResponseDTO<PlayHistoryModelDTO> = try await makeClientWithJSON(loading: "recently_played")
-            .request(path: "/me/player/recently-played", queryItems: [], repositoryType: "Tracks")
+            .request(path: "/me/player/recently-played")
         
         // CursorPagingResponseDTO
         #expect(page.href == "https://api.spotify.com/v1/me/player/recently-played")
@@ -212,16 +204,14 @@ import XCTest
         private struct DummyDTO: Decodable, Equatable { let id: String }
         
         private func makeClient(_ session: NetworkSessionMock) -> APIClient {
-            APIClient(session: session, accessToken: "test-token")
+            APIClient(session: session, auth: AuthProviderMock())
         }
         
         func testSuccessDecodesData() async throws {
             let session = NetworkSessionMock(statusCode: 200, data: #"{"id":"track123"}"#.data(using: .utf8)!)
             
             let client = makeClient(session)
-            let result: DummyDTO = try await client.request(
-                path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
-            )
+            let result: DummyDTO = try await client.request(path: "/me/top/tracks")
             XCTAssertEqual(result, DummyDTO(id: "track123"))
         }
         
@@ -229,9 +219,7 @@ import XCTest
             let session = NetworkSessionMock(statusCode: 401)
             let client = makeClient(session)
             do {
-                let _: DummyDTO = try await client.request(
-                    path: "/me/top/tracks", queryItems: [], repositoryType: "Tracks"
-                )
+                let _: DummyDTO = try await client.request(path: "/me/top/tracks")
                 XCTFail("Expected an error, none thrown")
             } catch let error as AppErrorEnum {
                 guard case .unauthorized = error else {
