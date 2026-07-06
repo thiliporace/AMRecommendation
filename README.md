@@ -1,6 +1,6 @@
 # AMRecommendation
 
-iOS app that displays recommended songs for an user by consuming the [Spotify Web API](https://developer.spotify.com/documentation/web-api).
+iOS app that displays Top Artists, Top Tracks, Recently Played Artists and Artists' profiles by consuming the [Spotify Web API](https://developer.spotify.com/documentation/web-api).
 
 ---
 
@@ -70,4 +70,4 @@ All dependencies are managed via **SPM (Swift Package Manager)**:
 4. Copy Secrets.example.xcconfig to Secrets.xcconfig, move it to AMRecommendation and fill in your Spotify credentials. This file is listed in .gitignore and must never be committed.
 5. Build and run.
 
-> Note: Accessing the Spotify Web API requires a Spotify app registered in the Spotify Developer Dashboard (providing a Client ID and Client Secret), and the app owner must have an active Spotify Premium subscription for Development Mode access. Xcode 26 with macOS Tahoe and iOS 26 for the build target are required.
+> Note: Accessing the Spotify Web API requires a Spotify app registered in the Spotify Developer Dashboard (providing a Client ID and Client Secret), and the app owner must have an active Spotify Premium subscription for Development Mode access. Xcode 26 with macOS Tahoe and iOS 15.6 for the build target are required.
