@@ -20,16 +20,28 @@ final class LoginViewModel {
     
     init(loginCoordinator: LoginCoordinator) {
         self.loginCoordinator = loginCoordinator
-        authRepositoryImpl = AuthRepositoryImpl(auth: SpotifyAuthProvider(tokenStore: KeychainTokenStore(service: "", account: ""), config: SpotifyConfig(clientId: "", redirectUri: "", scopes: [""])), webAuth: SpotifyWebAuthenticator(), pkce: PKCEGenerator(), config: SpotifyConfig(clientId: "", redirectUri: "", scopes: [""]))
+        authRepositoryImpl = Self.makeAuthRepository()
     }
-    
+
+    private static func makeAuthRepository() -> AuthRepositoryImpl {
+        let config = SpotifyConfig(clientId: "", redirectUri: "", scopes: [""])
+        let tokenStore = KeychainTokenStore(service: "", account: "")
+        let authProvider = SpotifyAuthProvider(tokenStore: tokenStore, config: config)
+        return AuthRepositoryImpl(
+            auth: authProvider,
+            webAuth: SpotifyWebAuthenticator(),
+            pkce: PKCEGenerator(),
+            config: config
+        )
+    }
+
     func handleLoginUserTap(){
         Task{
             do {
                 onLoginStateChange?(.loading)
-                
-                authRepositoryImpl = AuthRepositoryImpl(auth: SpotifyAuthProvider(tokenStore: KeychainTokenStore(service: "", account: ""), config: SpotifyConfig(clientId: "", redirectUri: "", scopes: [""])), webAuth: SpotifyWebAuthenticator(), pkce: PKCEGenerator(), config: SpotifyConfig(clientId: "", redirectUri: "", scopes: [""]))
-                
+
+                authRepositoryImpl = Self.makeAuthRepository()
+
                 try await authRepositoryImpl.login()
                 
                 let authorized: Bool

@@ -46,6 +46,15 @@
 			);
 			target = 8F2CE0692FEB0A9400C3E428 /* AMRecommendation */;
 		};
+		8F95469B2FFD7BED009CD515 /* Exceptions for "AMRecommendation" folder in "AMRecommendationTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Fonts/Archivo-VariableFont_wdth,wght.ttf",
+				"Fonts/ArchivoBlack-Regular.ttf",
+				"Fonts/IBMPlexMono-Regular.ttf",
+			);
+			target = 8F2CE07F2FEB0A9600C3E428 /* AMRecommendationTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,6 +62,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				8F2CE0922FEB0A9600C3E428 /* Exceptions for "AMRecommendation" folder in "AMRecommendation" target */,
+				8F95469B2FFD7BED009CD515 /* Exceptions for "AMRecommendation" folder in "AMRecommendationTests" target */,
 			);
 			path = AMRecommendation;
 			sourceTree = "<group>";
