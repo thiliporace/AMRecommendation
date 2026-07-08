@@ -16,6 +16,7 @@ iOS app that displays Top Artists, Top Tracks, Recently Played Artists and Artis
 - **UIKit** — The entire interface is built programmatically with UIKit.
 - **Design System** — Reusable, centralized UI components.
 - **SDUI (Server-Driven UI)** — Certain components are rendered dynamically from a JSON file.
+- ## Dynamic Type** - Built-in accessibility support ensuring all typography scales fluidly according to the user's system-wide font size preferences without breaking layouts.
 
 ---
 
