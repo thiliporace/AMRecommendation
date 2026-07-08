@@ -1,5 +1,5 @@
 //
-//  ButtonPrimarySnapshotTests.swift
+//  ButtonDestructiveSnapshotTests.swift
 //  AMRecommendationTests
 //
 //  Created by Thiago Liporace on 07/07/26.
@@ -11,7 +11,7 @@ import UIKit
 import SnapshotTesting
 @testable import AMRecommendation
 
-class ButtonPrimarySnapshotTests: XCTestCase {
+class ButtonDestructiveSnapshotTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,23 +21,14 @@ class ButtonPrimarySnapshotTests: XCTestCase {
             "IBMPlexMono-Regular"
         ]
         for name in names {
-            guard let url = Bundle(for: ButtonPrimarySnapshotTests.self)
+            guard let url = Bundle(for: ButtonDestructiveSnapshotTests.self)
                     .url(forResource: name, withExtension: "ttf") else {
-                print("⚠️ NOT in test bundle: \(name).ttf")
+                print("font not in test bundle: \(name).ttf")
                 continue
             }
             var error: Unmanaged<CFError>?
             if !CTFontManagerRegisterFontsForURL(url as CFURL, .process, &error) {
-                print("⚠️ register failed for \(name):", error.debugDescription)
-            }
-        }
-    }
-    
-    func testDumpFonts() {
-        for family in UIFont.familyNames.sorted() {
-            print("Family: \(family)")
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print("   →", name)
+                print("font register failed for \(name):", error.debugDescription)
             }
         }
     }
@@ -46,7 +37,8 @@ class ButtonPrimarySnapshotTests: XCTestCase {
         let view = UIView()
 
         view.backgroundColor = .systemBackground
-        view.frame = CGRect(x: 0, y: 0, width: 780, height: 440)
+        // Match the 390x220 design-system snapshot card so fonts are directly comparable.
+        view.frame = CGRect(x: 0, y: 0, width: 390, height: 220)
 
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -55,15 +47,12 @@ class ButtonPrimarySnapshotTests: XCTestCase {
         stackView.distribution = .fillEqually
         view.addSubview(stackView)
 
-        let normalButtonTitle = AppLabel(fontEnum: .section, text: "connect spotify")
-        let normalButton = ButtonPrimary(buttonTitle: normalButtonTitle.text!)
+        let normalButton = ButtonDestructive(buttonTitle: "log out")
 
-        let pressedButtonTitle = AppLabel(fontEnum: .section, text: "pressed")
-        let pressedButton = ButtonPrimary(buttonTitle: pressedButtonTitle.text!)
+        let pressedButton = ButtonDestructive(buttonTitle: "pressed")
         pressedButton.isHighlighted = true
 
-        let disabledButtonTitle = AppLabel(fontEnum: .section, text: "disabled")
-        let disabledButton = ButtonPrimary(buttonTitle: disabledButtonTitle.text!)
+        let disabledButton = ButtonDestructive(buttonTitle: "disabled")
         disabledButton.isEnabled = false
 
         stackView.addArrangedSubview(normalButton)
@@ -73,7 +62,7 @@ class ButtonPrimarySnapshotTests: XCTestCase {
         return view
     }
 
-    func testButtonPrimary() {
+    func testButtonDestructive() {
         let variants: [(name: String, style: UIUserInterfaceStyle)] = [
             ("LightMode", .light),
             ("DarkMode", .dark)
@@ -84,7 +73,12 @@ class ButtonPrimarySnapshotTests: XCTestCase {
         }) {
             for variant in variants {
                 let viewToSnapshot = createButtonsView()
-                let traits = UITraitCollection(userInterfaceStyle: variant.style)
+                // Render at the design card's 390x220 point size with a low displayScale so the
+                // exported image stays small (780x440) and its button/font proportions match the card.
+                let traits = UITraitCollection(traitsFrom: [
+                    UITraitCollection(userInterfaceStyle: variant.style),
+                    UITraitCollection(displayScale: 2.0)
+                ])
 
                 assertSnapshot(
                     of: viewToSnapshot,
@@ -97,7 +91,7 @@ class ButtonPrimarySnapshotTests: XCTestCase {
 
     /// Verifies the buttons honour Dynamic Type: the title font grows with the
     /// user's Larger Text setting instead of staying at its fixed design size.
-    func testButtonPrimaryDynamicType() {
+    func testButtonDestructiveDynamicType() {
         let categories: [(name: String, category: UIContentSizeCategory)] = [
             ("ExtraSmall", .extraSmall),
             ("Default", .large),
@@ -111,7 +105,8 @@ class ButtonPrimarySnapshotTests: XCTestCase {
                 let viewToSnapshot = createButtonsView()
                 let traits = UITraitCollection(traitsFrom: [
                     UITraitCollection(userInterfaceStyle: .light),
-                    UITraitCollection(preferredContentSizeCategory: entry.category)
+                    UITraitCollection(preferredContentSizeCategory: entry.category),
+                    UITraitCollection(displayScale: 2.0)
                 ])
 
                 assertSnapshot(

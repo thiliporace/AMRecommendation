@@ -13,6 +13,7 @@ enum FontEnum {
     case title
     case section
     case data
+    case control
     case annotation
     
     var size: CGFloat {
@@ -21,6 +22,7 @@ enum FontEnum {
         case .title: return 20
         case .section: return 13
         case .data: return 12
+        case .control: return 11
         case .annotation: return 10
         }
     }
@@ -31,6 +33,7 @@ enum FontEnum {
         case .title:   return 0
         case .section: return 0.14
         case .data:    return 0
+        case .control: return 0
         case .annotation: return 0.12
         }
     }
@@ -45,6 +48,7 @@ enum FontEnum {
         case .title:      return .title1
         case .section:    return .headline
         case .data:       return .body
+        case .control:    return .body
         case .annotation: return .caption1
         }
     }
@@ -58,6 +62,8 @@ enum FontEnum {
             return UIFont(name: "ArchivoRoman-ExtraBold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .heavy)
         case .section:
             return UIFont(name: "ArchivoRoman-Bold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
+        case .control:
+            return UIFont(name: "IBMPlexMono-SemiBold", size: size) ?? UIFont.monospacedSystemFont(ofSize: size, weight: .regular)
         case .data, .annotation:
             return UIFont(name: "IBMPlexMono-Regular", size: size) ?? UIFont.monospacedSystemFont(ofSize: size, weight: .regular)
         }
@@ -71,20 +77,23 @@ enum FontEnum {
     }
 
     /// Same as `font`, but scaled for an explicit trait collection.
-    func font(compatibleWith traitCollection: UITraitCollection) -> UIFont {
-        UIFontMetrics(forTextStyle: textStyle).scaledFont(for: baseFont, compatibleWith: traitCollection)
+    /// `maximumPointSize` caps Dynamic Type growth so labels in fixed-height controls never scale past what their container can hold.
+    func font(compatibleWith traitCollection: UITraitCollection, maximumPointSize: CGFloat = .greatestFiniteMagnitude) -> UIFont {
+        UIFontMetrics(forTextStyle: textStyle)
+            .scaledFont(for: baseFont, maximumPointSize: maximumPointSize, compatibleWith: traitCollection)
     }
 
-    /// Letter spacing scaled alongside the font.
-    func kern(compatibleWith traitCollection: UITraitCollection) -> CGFloat {
-        UIFontMetrics(forTextStyle: textStyle).scaledValue(for: kern, compatibleWith: traitCollection)
+    /// Letter spacing scaled alongside the font. Kept proportional to the scaled font size so tracking honours the same cap.
+    func kern(compatibleWith traitCollection: UITraitCollection, maximumPointSize: CGFloat = .greatestFiniteMagnitude) -> CGFloat {
+        let scaledFont = font(compatibleWith: traitCollection, maximumPointSize: maximumPointSize)
+        return kern * (scaledFont.pointSize / size)
     }
 
     var isUppercased: Bool {
         switch self{
         case .display, .title, .section:
             return true
-        case .data, .annotation:
+        case .data, .control, .annotation:
             return false
         }
     }

@@ -52,6 +52,7 @@
 				"Fonts/Archivo-VariableFont_wdth,wght.ttf",
 				"Fonts/ArchivoBlack-Regular.ttf",
 				"Fonts/IBMPlexMono-Regular.ttf",
+				"Fonts/IBMPlexMono-SemiBold.ttf",
 			);
 			target = 8F2CE07F2FEB0A9600C3E428 /* AMRecommendationTests */;
 		};
