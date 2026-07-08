@@ -48,6 +48,14 @@ class TimeRangeControlSnapshotTests: XCTestCase {
         return view
     }
 
+    /// Finds the control's segment buttons in on-screen (left-to-right) order.
+    private func segmentButtons(in view: UIView) -> [UIButton] {
+        view.subviews.reduce(into: [UIButton]()) { result, subview in
+            if let button = subview as? UIButton { result.append(button) }
+            result.append(contentsOf: segmentButtons(in: subview))
+        }
+    }
+
     func testTimeRangeControl() {
         let variants: [(name: String, style: UIUserInterfaceStyle)] = [
             ("LightMode", .light),
@@ -92,6 +100,38 @@ class TimeRangeControlSnapshotTests: XCTestCase {
                 let traits = UITraitCollection(traitsFrom: [
                     UITraitCollection(userInterfaceStyle: .light),
                     UITraitCollection(preferredContentSizeCategory: entry.category),
+                    UITraitCollection(displayScale: 3.0)
+                ])
+
+                assertSnapshot(
+                    of: viewToSnapshot,
+                    as: .image(precision: 0.98, traits: traits),
+                    named: entry.name
+                )
+            }
+        }
+    }
+
+    /// Verifies that *tapping* a segment moves the highlight: the reference for each case
+    /// shows a different segment filled than the default first-segment selection.
+    func testTimeRangeControlSelectionOnTap() {
+        let cases: [(name: String, tappedIndex: Int)] = [
+            ("SecondSelected", 1),
+            ("ThirdSelected", 2)
+        ]
+
+        withSnapshotTesting(diffTool: .init { reference, failure in
+            return "open \"\(reference)\" \"\(failure)\""
+        }) {
+            for entry in cases {
+                let viewToSnapshot = createControlView()
+                let buttons = segmentButtons(in: viewToSnapshot)
+
+                // Drive the real touch path so the snapshot reflects a genuine interaction.
+                buttons[entry.tappedIndex].sendActions(for: .touchUpInside)
+
+                let traits = UITraitCollection(traitsFrom: [
+                    UITraitCollection(userInterfaceStyle: .light),
                     UITraitCollection(displayScale: 3.0)
                 ])
 
