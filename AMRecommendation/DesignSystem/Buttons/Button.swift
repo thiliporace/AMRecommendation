@@ -28,7 +28,9 @@ protocol ButtonProtocol {
 
 /// Super class for other buttons to inherit from
 class Button: UIButton, ButtonProtocol {
-    let buttonTitle: String
+    private let buttonTitle: String
+    
+    private let minimumHeight: CGFloat = 56
     
     /// Placeholder values
     var highlightedFillColor: UIColor { return UIColor(white: 255, alpha: 1) }
@@ -44,7 +46,7 @@ class Button: UIButton, ButtonProtocol {
     var disabledBorderColor: UIColor { return UIColor(white: 255, alpha: 1)}
 
     /// Upper bound for Dynamic Type growth on the title.
-    var maximumTitlePointSize: CGFloat { 20 }
+    private var maximumTitlePointSize: CGFloat { 20 }
     
     init(buttonTitle: String) {
         self.buttonTitle = buttonTitle.uppercased()
@@ -54,6 +56,20 @@ class Button: UIButton, ButtonProtocol {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+
+        guard let container = superview else { return }
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        /// Pin to the container's layout guide margins, creating flexible width
+        NSLayoutConstraint.activate([
+            self.leadingAnchor.constraint(equalTo: container.layoutMarginsGuide.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: container.layoutMarginsGuide.trailingAnchor)
+        ])
     }
     
     func setupButton(){
@@ -76,10 +92,9 @@ class Button: UIButton, ButtonProtocol {
             button.updateStates()
         }
         
-        /// Set fixed Width and Height for the button
+        /// Set fixed Height for the button
         NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: 358),
-            self.heightAnchor.constraint(equalToConstant: 56)
+            self.heightAnchor.constraint(greaterThanOrEqualToConstant: minimumHeight)
         ])
 
         /// Update the Button Configuration if the user alters its Larger Text preference

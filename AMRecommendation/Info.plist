@@ -4,13 +4,13 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>ArchivoBlack-Regular</string>
-		<string>IBMPlexMono-Regular</string>
-		<string>IBMPlexMono-SemiBold</string>
-		<string>Archivo-Bold</string>
-		<string>Archivo-ExtraBold</string>
-		<string>Archivo-SemiBold</string>
-		<string>Archivo-Regular</string>
+		<string>ArchivoBlack-Regular.ttf</string>
+		<string>IBMPlexMono-Regular.ttf</string>
+		<string>IBMPlexMono-SemiBold.ttf</string>
+		<string>Archivo-Bold.ttf</string>
+		<string>Archivo-ExtraBold.ttf</string>
+		<string>Archivo-SemiBold.ttf</string>
+		<string>Archivo-Regular.ttf</string>
 	</array>
 	<key>SPOTIFY_CLIENT_ID</key>
 	<string>$(SPOTIFY_CLIENT_ID)</string>

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 /// UIControl: Visual elements that convey a specific action or intention in response to user interactions
+/// Perfect for a static number of tabs with no scrolling
 class TimeRangeControl: UIControl {
     
     let segments: [TimeRangeEnum] = TimeRangeEnum.allCases
@@ -26,20 +27,19 @@ class TimeRangeControl: UIControl {
         }
     }
     
-    var maximumTitlePointSize: CGFloat { 20 }
+    var maximumTitlePointSize: CGFloat = 20
 
     private let borderWidth: CGFloat = 1
     private let segmentSpacing: CGFloat = 1
 
-    /// The component renders at a fixed 174 × 33: the width is capped at 174 and never grows past it
-    private let width: CGFloat = 174
-    private let controlHeight: CGFloat = 33
+    /// The buttons render at a minimum 44 height
+    private let minimumButtonHeight: CGFloat = 44
 
     private let stackView = UIStackView()
     private var buttons: [UIButton] = []
-
+    
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: width, height: controlHeight)
+        return CGSize(width: UIView.noIntrinsicMetric, height: minimumButtonHeight)
     }
 
     init() {
@@ -82,8 +82,8 @@ class TimeRangeControl: UIControl {
             config.background.cornerRadius = 0
             config.cornerStyle = .fixed
 
-            /// Remove the default padding so the short "4W"/"6M"/"1Y" labels fit on one line
-            config.contentInsets = .zero
+            /// Add padding to each button
+            config.contentInsets = .init(top: 8, leading: 20, bottom: 8, trailing: 20)
 
             /// No per-segment stroke: the outer border + dividers come from the control's own background
             config.background.strokeWidth = 0
@@ -92,6 +92,7 @@ class TimeRangeControl: UIControl {
 
             /// Recompute the styling on every configuration update so the title font tracks
             /// Dynamic Type and the fill/text colours follow the current selection.
+            /// If we did not use [weak self] here, this View and the Button would create a Strong Reference Cycle
             button.configurationUpdateHandler = { [weak self] button in
                 guard let self, var config = button.configuration else { return }
 
@@ -132,6 +133,7 @@ class TimeRangeControl: UIControl {
     private func layoutStack() {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = segmentSpacing
 
         for button in buttons {
@@ -141,12 +143,13 @@ class TimeRangeControl: UIControl {
         /// The background shows through as the outer border and the segment dividers
         backgroundColor = UIColor(resource: .borderStrong)
         addSubview(stackView)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        /// Inset by the border so the background shows as a 1pt frame around the segments
-        stackView.frame = bounds.insetBy(dx: borderWidth, dy: borderWidth)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: borderWidth),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -borderWidth),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: borderWidth),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -borderWidth)
+        ])
     }
     
     @objc private func didTapSegment(_ sender: UIButton) {
@@ -163,70 +166,32 @@ class TimeRangeControl: UIControl {
 }
 
 #if DEBUG
-@MainActor
-func segmentButtons(in view: UIView) -> [UIButton] {
-    view.subviews.reduce(into: [UIButton]()) { result, subview in
-        if let button = subview as? UIButton { result.append(button) }
-        result.append(contentsOf: segmentButtons(in: subview))
-    }
-}
-
 @available(iOS 17.0, *)
-#Preview("TimeRangeControlDarkModeFirstSelection"){
-    previewHost(.dark){
+#Preview("TimeRangeControlDarkMode"){
+    PreviewHost.previewHost(.dark){
         let timeRangeControl = TimeRangeControl()
-        let buttons = segmentButtons(in: timeRangeControl)
+        let buttons = SegmentButtons.segmentButtons(in: timeRangeControl)
         buttons[0].sendActions(for: .touchUpInside)
         return timeRangeControl
     }
 }
 
 @available(iOS 17.0, *)
-#Preview("TimeRangeControlDarkModeSecondSelection"){
-    previewHost(.dark){
+#Preview("TimeRangeControlLightMode"){
+    PreviewHost.previewHost(.light){
         let timeRangeControl = TimeRangeControl()
-        let buttons = segmentButtons(in: timeRangeControl)
-        buttons[1].sendActions(for: .touchUpInside)
-        return timeRangeControl
-    }
-}
-
-@available(iOS 17.0, *)
-#Preview("TimeRangeControlDarkModeThirdSelection"){
-    previewHost(.dark){
-        let timeRangeControl = TimeRangeControl()
-        let buttons = segmentButtons(in: timeRangeControl)
-        buttons[2].sendActions(for: .touchUpInside)
-        return timeRangeControl
-    }
-}
-
-@available(iOS 17.0, *)
-#Preview("TimeRangeControlLightModeFirstSelection"){
-    previewHost(.light){
-        let timeRangeControl = TimeRangeControl()
-        let buttons = segmentButtons(in: timeRangeControl)
+        let buttons = SegmentButtons.segmentButtons(in: timeRangeControl)
         buttons[0].sendActions(for: .touchUpInside)
         return timeRangeControl
     }
 }
 
 @available(iOS 17.0, *)
-#Preview("TimeRangeControlLightModeSecondSelection"){
-    previewHost(.light){
+#Preview("TimeRangeControlDarkModeXXXL"){
+    PreviewHost.previewHost(.dark, contentSizeCategory: .extraExtraExtraLarge){
         let timeRangeControl = TimeRangeControl()
-        let buttons = segmentButtons(in: timeRangeControl)
-        buttons[1].sendActions(for: .touchUpInside)
-        return timeRangeControl
-    }
-}
-
-@available(iOS 17.0, *)
-#Preview("TimeRangeControlLightModeThirdSelection"){
-    previewHost(.light){
-        let timeRangeControl = TimeRangeControl()
-        let buttons = segmentButtons(in: timeRangeControl)
-        buttons[2].sendActions(for: .touchUpInside)
+        let buttons = SegmentButtons.segmentButtons(in: timeRangeControl)
+        buttons[0].sendActions(for: .touchUpInside)
         return timeRangeControl
     }
 }

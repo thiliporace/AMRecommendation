@@ -25,7 +25,7 @@ class ButtonPrimary: Button {
 #if DEBUG
 @available(iOS 17.0, *)
 #Preview("ButtonPrimaryDarkMode") {
-    previewHost(.dark) {
+    PreviewHost.previewHost(.dark) {
         let button = ButtonPrimary(buttonTitle: "test")
         button.traitOverrides.userInterfaceStyle = .dark
         return button
@@ -34,7 +34,7 @@ class ButtonPrimary: Button {
 
 @available(iOS 17.0, *)
 #Preview("ButtonPrimaryDarkModeHighlighted") {
-    previewHost(.dark) {
+    PreviewHost.previewHost(.dark) {
         let button = ButtonPrimary(buttonTitle: "test")
         button.traitOverrides.userInterfaceStyle = .dark
         button.isHighlighted = true
@@ -44,7 +44,7 @@ class ButtonPrimary: Button {
 
 @available(iOS 17.0, *)
 #Preview("ButtonPrimaryDarkModeDisabled") {
-    previewHost(.dark) {
+    PreviewHost.previewHost(.dark) {
         let button = ButtonPrimary(buttonTitle: "test")
         button.traitOverrides.userInterfaceStyle = .dark
         button.isEnabled = false

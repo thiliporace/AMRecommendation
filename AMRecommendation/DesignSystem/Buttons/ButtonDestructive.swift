@@ -25,7 +25,7 @@ class ButtonDestructive: Button {
 #if DEBUG
 @available(iOS 17.0, *)
 #Preview("ButtonDestructiveDarkMode") {
-    previewHost(.dark) {
+    PreviewHost.previewHost(.dark) {
         let button = ButtonDestructive(buttonTitle: "test")
         button.traitOverrides.userInterfaceStyle = .dark
         return button
@@ -34,7 +34,7 @@ class ButtonDestructive: Button {
 
 @available(iOS 17.0, *)
 #Preview("ButtonDestructiveDarkModeHighlighted") {
-    previewHost(.dark) {
+    PreviewHost.previewHost(.dark) {
         let button = ButtonDestructive(buttonTitle: "test")
         button.traitOverrides.userInterfaceStyle = .dark
         button.isHighlighted = true
@@ -44,7 +44,7 @@ class ButtonDestructive: Button {
 
 @available(iOS 17.0, *)
 #Preview("ButtonDestructiveDarkModeDisabled") {
-    previewHost(.dark) {
+    PreviewHost.previewHost(.dark) {
         let button = ButtonDestructive(buttonTitle: "test")
         button.traitOverrides.userInterfaceStyle = .dark
         button.isEnabled = false
