@@ -49,7 +49,10 @@
 		8F95469B2FFD7BED009CD515 /* Exceptions for "AMRecommendation" folder in "AMRecommendationTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"Fonts/Archivo-VariableFont_wdth,wght.ttf",
+				"Fonts/Archivo-Bold.ttf",
+				"Fonts/Archivo-ExtraBold.ttf",
+				"Fonts/Archivo-Regular.ttf",
+				"Fonts/Archivo-SemiBold.ttf",
 				"Fonts/ArchivoBlack-Regular.ttf",
 				"Fonts/IBMPlexMono-Regular.ttf",
 				"Fonts/IBMPlexMono-SemiBold.ttf",

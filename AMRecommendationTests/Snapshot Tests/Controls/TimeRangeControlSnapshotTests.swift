@@ -71,7 +71,7 @@ class TimeRangeControlSnapshotTests: XCTestCase {
                 // reference whose control/font proportions line up with the card.
                 let traits = UITraitCollection(traitsFrom: [
                     UITraitCollection(userInterfaceStyle: variant.style),
-                    UITraitCollection(displayScale: 3.0)
+                    UITraitCollection(displayScale: 2.0)
                 ])
 
                 assertSnapshot(
@@ -100,7 +100,7 @@ class TimeRangeControlSnapshotTests: XCTestCase {
                 let traits = UITraitCollection(traitsFrom: [
                     UITraitCollection(userInterfaceStyle: .light),
                     UITraitCollection(preferredContentSizeCategory: entry.category),
-                    UITraitCollection(displayScale: 3.0)
+                    UITraitCollection(displayScale: 2.0)
                 ])
 
                 assertSnapshot(
@@ -132,7 +132,7 @@ class TimeRangeControlSnapshotTests: XCTestCase {
 
                 let traits = UITraitCollection(traitsFrom: [
                     UITraitCollection(userInterfaceStyle: .light),
-                    UITraitCollection(displayScale: 3.0)
+                    UITraitCollection(displayScale: 2.0)
                 ])
 
                 assertSnapshot(

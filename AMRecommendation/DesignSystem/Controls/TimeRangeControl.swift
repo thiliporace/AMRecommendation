@@ -161,3 +161,73 @@ class TimeRangeControl: UIControl {
         }
     }
 }
+
+#if DEBUG
+@MainActor
+func segmentButtons(in view: UIView) -> [UIButton] {
+    view.subviews.reduce(into: [UIButton]()) { result, subview in
+        if let button = subview as? UIButton { result.append(button) }
+        result.append(contentsOf: segmentButtons(in: subview))
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("TimeRangeControlDarkModeFirstSelection"){
+    previewHost(.dark){
+        let timeRangeControl = TimeRangeControl()
+        let buttons = segmentButtons(in: timeRangeControl)
+        buttons[0].sendActions(for: .touchUpInside)
+        return timeRangeControl
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("TimeRangeControlDarkModeSecondSelection"){
+    previewHost(.dark){
+        let timeRangeControl = TimeRangeControl()
+        let buttons = segmentButtons(in: timeRangeControl)
+        buttons[1].sendActions(for: .touchUpInside)
+        return timeRangeControl
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("TimeRangeControlDarkModeThirdSelection"){
+    previewHost(.dark){
+        let timeRangeControl = TimeRangeControl()
+        let buttons = segmentButtons(in: timeRangeControl)
+        buttons[2].sendActions(for: .touchUpInside)
+        return timeRangeControl
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("TimeRangeControlLightModeFirstSelection"){
+    previewHost(.light){
+        let timeRangeControl = TimeRangeControl()
+        let buttons = segmentButtons(in: timeRangeControl)
+        buttons[0].sendActions(for: .touchUpInside)
+        return timeRangeControl
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("TimeRangeControlLightModeSecondSelection"){
+    previewHost(.light){
+        let timeRangeControl = TimeRangeControl()
+        let buttons = segmentButtons(in: timeRangeControl)
+        buttons[1].sendActions(for: .touchUpInside)
+        return timeRangeControl
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("TimeRangeControlLightModeThirdSelection"){
+    previewHost(.light){
+        let timeRangeControl = TimeRangeControl()
+        let buttons = segmentButtons(in: timeRangeControl)
+        buttons[2].sendActions(for: .touchUpInside)
+        return timeRangeControl
+    }
+}
+#endif

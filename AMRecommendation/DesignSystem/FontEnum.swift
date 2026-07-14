@@ -20,7 +20,7 @@ enum FontEnum {
         switch self {
         case .display: return 34
         case .title: return 20
-        case .section: return 13
+        case .section: return 14
         case .data: return 12
         case .control: return 11
         case .annotation: return 10
@@ -59,9 +59,9 @@ enum FontEnum {
         case .display:
             return UIFont(name: "ArchivoBlack-Regular", size: size) ?? UIFont.systemFont(ofSize: size, weight: .black)
         case .title:
-            return UIFont(name: "ArchivoRoman-ExtraBold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .heavy)
+            return UIFont(name: "Archivo-ExtraBold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .heavy)
         case .section:
-            return UIFont(name: "ArchivoRoman-Bold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
+            return UIFont(name: "Archivo-Bold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
         case .control:
             return UIFont(name: "IBMPlexMono-SemiBold", size: size) ?? UIFont.monospacedSystemFont(ofSize: size, weight: .regular)
         case .data, .annotation:

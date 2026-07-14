@@ -21,3 +21,61 @@ class ButtonDestructive: Button {
     override var normalBorderColor: UIColor { return UIColor(resource: .buttonDestructiveBorder)}
     override var disabledBorderColor: UIColor { return UIColor(resource: .buttonDestructiveBorderDisabled)}
 }
+
+#if DEBUG
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveDarkMode") {
+    previewHost(.dark) {
+        let button = ButtonDestructive(buttonTitle: "test")
+        button.traitOverrides.userInterfaceStyle = .dark
+        return button
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveDarkModeHighlighted") {
+    previewHost(.dark) {
+        let button = ButtonDestructive(buttonTitle: "test")
+        button.traitOverrides.userInterfaceStyle = .dark
+        button.isHighlighted = true
+        return button
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveDarkModeDisabled") {
+    previewHost(.dark) {
+        let button = ButtonDestructive(buttonTitle: "test")
+        button.traitOverrides.userInterfaceStyle = .dark
+        button.isEnabled = false
+        return button
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveLightMode") {
+    let button = ButtonDestructive(buttonTitle: "test")
+    return button
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveLightModeHighlighted") {
+    let button = ButtonDestructive(buttonTitle: "test")
+    button.isHighlighted = true
+    return button
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveLightModeDisabled") {
+    let button = ButtonDestructive(buttonTitle: "test")
+    button.isEnabled = false
+    return button
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonDestructiveXXXL") {
+    let button = ButtonDestructive(buttonTitle: "test")
+    button.traitOverrides.preferredContentSizeCategory = .extraExtraExtraLarge
+    return button
+}
+#endif

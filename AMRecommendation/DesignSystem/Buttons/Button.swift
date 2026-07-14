@@ -75,6 +75,12 @@ class Button: UIButton, ButtonProtocol {
             guard let button = button as? Button else { return }
             button.updateStates()
         }
+        
+        /// Set fixed Width and Height for the button
+        NSLayoutConstraint.activate([
+            self.widthAnchor.constraint(equalToConstant: 358),
+            self.heightAnchor.constraint(equalToConstant: 56)
+        ])
 
         /// Update the Button Configuration if the user alters its Larger Text preference
         if #available(iOS 17.0, *) {
@@ -136,5 +142,3 @@ class Button: UIButton, ButtonProtocol {
         self.configuration = config
     }
 }
-
-

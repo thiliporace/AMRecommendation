@@ -21,3 +21,61 @@ class ButtonPrimary: Button {
     override var normalBorderColor: UIColor { return UIColor.clear }
     override var disabledBorderColor: UIColor { return UIColor.clear }
 }
+
+#if DEBUG
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryDarkMode") {
+    previewHost(.dark) {
+        let button = ButtonPrimary(buttonTitle: "test")
+        button.traitOverrides.userInterfaceStyle = .dark
+        return button
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryDarkModeHighlighted") {
+    previewHost(.dark) {
+        let button = ButtonPrimary(buttonTitle: "test")
+        button.traitOverrides.userInterfaceStyle = .dark
+        button.isHighlighted = true
+        return button
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryDarkModeDisabled") {
+    previewHost(.dark) {
+        let button = ButtonPrimary(buttonTitle: "test")
+        button.traitOverrides.userInterfaceStyle = .dark
+        button.isEnabled = false
+        return button
+    }
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryLightMode") {
+    let button = ButtonPrimary(buttonTitle: "test")
+    return button
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryLightModeHighlighted") {
+    let button = ButtonPrimary(buttonTitle: "test")
+    button.isHighlighted = true
+    return button
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryLightModeDisabled") {
+    let button = ButtonPrimary(buttonTitle: "test")
+    button.isEnabled = false
+    return button
+}
+
+@available(iOS 17.0, *)
+#Preview("ButtonPrimaryXXXL") {
+    let button = ButtonPrimary(buttonTitle: "test")
+    button.traitOverrides.preferredContentSizeCategory = .extraExtraExtraLarge
+    return button
+}
+#endif

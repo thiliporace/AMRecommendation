@@ -4,9 +4,13 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Archivo-VariableFont_wdth,wght</string>
 		<string>ArchivoBlack-Regular</string>
 		<string>IBMPlexMono-Regular</string>
+		<string>IBMPlexMono-SemiBold</string>
+		<string>Archivo-Bold</string>
+		<string>Archivo-ExtraBold</string>
+		<string>Archivo-SemiBold</string>
+		<string>Archivo-Regular</string>
 	</array>
 	<key>SPOTIFY_CLIENT_ID</key>
 	<string>$(SPOTIFY_CLIENT_ID)</string>
