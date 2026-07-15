@@ -63,12 +63,3 @@ final class SpotifyWebAuthenticator: NSObject, WebAuthenticationProtocol {
         return .networkError
     }
 }
-
-//extension SpotifyWebAuthenticator: ASWebAuthenticationPresentationContextProviding {
-//    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-//        UIApplication.shared.connectedScenes
-//            .compactMap { $0 as? UIWindowScene }
-//            .flatMap { $0.windows }
-//            .first { $0.isKeyWindow } ?? ASPresentationAnchor(windowScene: )
-//    }
-//}

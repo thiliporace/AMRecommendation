@@ -24,6 +24,7 @@ iOS app that displays Top Artists, Top Tracks, Recently Played Artists and Artis
 
 - **Swift 6** — Latest Swift version.
 - **Swift Concurrency** — Uses `async/await`, actors, and structured concurrency for asynchronous work.
+- **Combine** — Reactive state binding between the Presentation layer's ViewModels and Views. ViewModels hold state and expose it as a read-only, so Views can subscribe but never push values back.
 
 ---
 

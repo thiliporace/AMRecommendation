@@ -174,4 +174,14 @@ class TopTabBarControl: UIControl {
         return topTabBarControl
     }
 }
+
+@available(iOS 17.0, *)
+#Preview("TopTabBarLightMode"){
+    PreviewHost.previewHost(.light, fillWidth: true){
+        let topTabBarControl = TopTabBarControl(options: ["tracks","artists"])
+        let buttons = SegmentButtons.segmentButtons(in: topTabBarControl)
+        buttons[0].sendActions(for: .touchUpInside)
+        return topTabBarControl
+    }
+}
 #endif

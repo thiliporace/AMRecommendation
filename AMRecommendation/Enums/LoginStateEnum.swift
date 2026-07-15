@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoginStateEnum {
+enum LoginStateEnum: Equatable {
     case success
     case loading
     case error

@@ -6,18 +6,25 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 final class LoginViewModel {
-    // Reference to Domain layer use cases
+    /// Reference to Domain layer use cases
     var authRepositoryImpl: AuthRepositoryImpl
-    
-    // Weak reference to coordinator
+
+    /// Weak reference to coordinator
     private weak var loginCoordinator: LoginCoordinator?
-    
-    // Delegate referenced by ViewController that listens to state change
-    var onLoginStateChange: ((LoginStateEnum) -> Void)?
-    
+
+    /// CurrentValueSubject holds its latest value, so a late subscriber immediately gets the current state
+    /// CurrentValueSubject: A subject that wraps a single value and publishes a new element whenever the value changes.
+    private let loginStateSubject = CurrentValueSubject<LoginStateEnum, Never>(.idle)
+
+    /// This is the public reader the ViewModel will reference.
+    /// By calling .eraseToAnyPublisher(), you expose a read-only stream to the View.
+    /// The View can subscribe to changes, but it cannot send new values into the pipeline.
+    var loginState: AnyPublisher<LoginStateEnum, Never> { loginStateSubject.eraseToAnyPublisher() }
+
     init(loginCoordinator: LoginCoordinator) {
         self.loginCoordinator = loginCoordinator
         authRepositoryImpl = Self.makeAuthRepository()
@@ -35,20 +42,15 @@ final class LoginViewModel {
         )
     }
 
-    func handleLoginUserTap(){
-        Task{
+    func handleLoginUserTap() {
+        Task {
+            loginStateSubject.send(.loading)
             do {
-                onLoginStateChange?(.loading)
-
                 authRepositoryImpl = Self.makeAuthRepository()
-
                 try await authRepositoryImpl.login()
-                
-                let authorized: Bool
-                await authorized = authRepositoryImpl.isAuthenticated
-                
-                if authorized { onLoginStateChange?(.success) }
-                else { onLoginStateChange?(.error) }
+                loginStateSubject.send(await authRepositoryImpl.isAuthenticated ? .success : .error)
+            } catch {
+                loginStateSubject.send(.error)
             }
         }
     }
